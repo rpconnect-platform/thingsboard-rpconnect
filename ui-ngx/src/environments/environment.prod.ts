@@ -15,7 +15,7 @@
 ///
 
 export const environment = {
-  appTitle: 'ThingsBoard',
+  appTitle: 'RP CONNECT',
   production: true,
 // @ts-ignore
   tbVersion: TB_VERSION,
