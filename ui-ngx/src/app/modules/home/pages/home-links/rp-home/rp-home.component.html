@@ -1,0 +1,125 @@
+<!--
+
+    Copyright © 2016-2024 The Thingsboard Authors
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<div class="rp-home">
+  <header class="rp-home-header">
+    <div class="rp-home-greeting">
+      <h1 class="rp-home-title">
+        {{ greetingKey | translate: greetingParams() }}
+        <span class="rp-home-emoji" aria-hidden="true">{{ greetingEmoji }}</span>
+      </h1>
+      <p class="rp-home-subtitle">{{ 'home.subtitle' | translate }}</p>
+    </div>
+
+    <div class="rp-home-actions">
+      <label class="rp-home-search">
+        <mat-icon class="material-icons">search</mat-icon>
+        <input type="search"
+               [formControl]="searchControl"
+               [placeholder]="'home.search-placeholder' | translate"
+               autocomplete="off"/>
+      </label>
+
+      <button *ngIf="fullscreenEnabled"
+              mat-icon-button
+              type="button"
+              class="rp-home-icon-btn"
+              (click)="toggleFullscreen()"
+              [attr.aria-label]="'fullscreen.fullscreen' | translate">
+        <mat-icon class="material-icons">{{ isFullscreen() ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
+      </button>
+
+      <tb-notification-bell></tb-notification-bell>
+
+      <button mat-icon-button
+              type="button"
+              class="rp-home-avatar"
+              [matMenuTriggerFor]="userMenu"
+              [attr.aria-label]="'home.open-user-menu' | translate">
+        <span class="rp-home-avatar-circle">{{ initials }}</span>
+        <span class="rp-home-avatar-status" aria-hidden="true"></span>
+      </button>
+      <mat-menu #userMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="openAccount()">
+          <mat-icon class="material-icons">account_circle</mat-icon>
+          <span translate>account.account</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon class="material-icons">exit_to_app</mat-icon>
+          <span translate>home.logout</span>
+        </button>
+      </mat-menu>
+    </div>
+  </header>
+
+  <div class="rp-home-body">
+    <section class="rp-kpi-row">
+      <tb-rp-kpi-card
+        [title]="'home.critical-alarms' | translate"
+        [value]="kpi.criticalAlarms"
+        [detail]="criticalDetail()"
+        icon="warning"
+        tone="red">
+      </tb-rp-kpi-card>
+      <tb-rp-kpi-card
+        [title]="'home.assigned-to-me' | translate"
+        [value]="kpi.assignedAlarms"
+        [detail]="assignedDetail()"
+        icon="person"
+        tone="blue">
+      </tb-rp-kpi-card>
+      <tb-rp-kpi-card
+        [title]="'home.active-devices' | translate"
+        [value]="kpi.activeDevices"
+        detail=""
+        icon="sensors"
+        tone="green">
+      </tb-rp-kpi-card>
+      <tb-rp-kpi-card
+        [title]="'home.inactive-devices' | translate"
+        [value]="kpi.inactiveDevices"
+        detail=""
+        icon="sensors_off"
+        tone="orange">
+      </tb-rp-kpi-card>
+    </section>
+
+    <section class="rp-mid-row">
+      <tb-rp-recent-dashboards [items]="recentDashboards"></tb-rp-recent-dashboards>
+      <section class="rp-card rp-chart-placeholder">
+        <header class="rp-card-header">
+          <div class="rp-card-title-wrap">
+            <span class="rp-card-title-icon" aria-hidden="true">
+              <mat-icon class="material-icons">show_chart</mat-icon>
+            </span>
+            <h2 class="rp-card-title">{{ 'home.consumption-title' | translate }}</h2>
+          </div>
+          <span class="rp-range-chip">{{ 'home.last-7-days' | translate }}</span>
+        </header>
+        <div class="rp-chart-placeholder-body">
+          <p>{{ 'home.consumption-pending' | translate }}</p>
+          <p class="rp-chart-key">{{ 'home.consumption-key-hint' | translate }}</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="rp-bottom-row">
+      <tb-rp-recent-alarms [items]="recentAlarms"></tb-rp-recent-alarms>
+      <tb-rp-quick-access></tb-rp-quick-access>
+    </section>
+  </div>
+</div>

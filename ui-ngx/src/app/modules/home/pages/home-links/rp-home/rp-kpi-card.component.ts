@@ -14,13 +14,20 @@
 /// limitations under the License.
 ///
 
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+
+export type RpKpiTone = 'red' | 'blue' | 'green' | 'orange';
 
 @Component({
-  selector: 'tb-home-links',
-  templateUrl: './home-links.component.html',
-  styleUrls: ['./home-links.component.scss'],
+  selector: 'tb-rp-kpi-card',
+  templateUrl: './rp-kpi-card.component.html',
+  styleUrls: ['./rp-kpi-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeLinksComponent {
+export class RpKpiCardComponent {
+  @Input() title: string;
+  @Input() value: number | string = 0;
+  @Input() detail: string;
+  @Input() icon: string;
+  @Input() tone: RpKpiTone = 'blue';
 }

@@ -1,0 +1,301 @@
+/**
+ * Copyright © 2016-2024 The Thingsboard Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100%;
+  background: #0b1220;
+}
+
+.rp-home {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 28px 32px 40px;
+  color: #e2e8f0;
+}
+
+.rp-home-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.rp-home-greeting {
+  min-width: 0;
+}
+
+.rp-home-title {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #f8fafc;
+}
+
+.rp-home-emoji {
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+.rp-home-subtitle {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.rp-home-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.rp-home-search {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 240px;
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #151c2f;
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  color: #94a3b8;
+
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    color: #64748b;
+  }
+
+  input {
+    flex: 1 1 auto;
+    min-width: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: #e2e8f0;
+    font-size: 14px;
+
+    &::placeholder {
+      color: #64748b;
+    }
+  }
+}
+
+.rp-home-icon-btn {
+  color: #94a3b8 !important;
+  width: 42px;
+  height: 42px;
+
+  &:hover {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+:host ::ng-deep {
+  tb-notification-bell {
+    button.mat-mdc-icon-button {
+      color: #94a3b8;
+      width: 42px;
+      height: 42px;
+
+      &:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.06);
+      }
+    }
+  }
+}
+
+.rp-home-avatar {
+  width: 42px !important;
+  height: 42px !important;
+  padding: 0 !important;
+  position: relative;
+}
+
+.rp-home-avatar-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #7c3aed, #4f46e5);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.rp-home-avatar-status {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #22c55e;
+  border: 2px solid #0b1220;
+}
+
+.rp-home-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 120px;
+}
+
+.rp-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.rp-mid-row,
+.rp-bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.rp-card {
+  box-sizing: border-box;
+  border-radius: 14px;
+  background: #151c2f;
+  padding: 18px 20px;
+  min-height: 280px;
+}
+
+.rp-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.rp-card-title-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rp-card-title-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(37, 99, 235, 0.95);
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    color: #fff;
+  }
+}
+
+.rp-card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 650;
+  color: #f1f5f9;
+}
+
+.rp-range-chip {
+  font-size: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 999px;
+  padding: 6px 12px;
+}
+
+.rp-chart-placeholder-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+  gap: 8px;
+  padding: 12px;
+}
+
+.rp-chart-key {
+  margin: 0;
+  font-size: 12px;
+  color: #475569;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@media (max-width: 1279px) {
+  .rp-kpi-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 959px) {
+  .rp-home {
+    padding: 20px 16px 32px;
+  }
+
+  .rp-home-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .rp-home-title {
+    font-size: 26px;
+  }
+
+  .rp-home-actions {
+    justify-content: flex-end;
+  }
+
+  .rp-home-search {
+    flex: 1 1 auto;
+    width: auto;
+  }
+
+  .rp-mid-row,
+  .rp-bottom-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 599px) {
+  .rp-kpi-row {
+    grid-template-columns: 1fr;
+  }
+}

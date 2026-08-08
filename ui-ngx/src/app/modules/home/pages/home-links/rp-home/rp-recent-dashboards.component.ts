@@ -14,13 +14,15 @@
 /// limitations under the License.
 ///
 
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { RpRecentDashboardItem } from './rp-home.models';
 
 @Component({
-  selector: 'tb-home-links',
-  templateUrl: './home-links.component.html',
-  styleUrls: ['./home-links.component.scss'],
+  selector: 'tb-rp-recent-dashboards',
+  templateUrl: './rp-recent-dashboards.component.html',
+  styleUrls: ['./rp-recent-dashboards.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeLinksComponent {
+export class RpRecentDashboardsComponent {
+  @Input() items: RpRecentDashboardItem[] = [];
 }

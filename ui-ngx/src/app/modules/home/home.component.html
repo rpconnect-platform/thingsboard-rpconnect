@@ -15,27 +15,42 @@
     limitations under the License.
 
 -->
-<mat-sidenav-container>
-  <mat-sidenav #sidenav class="tb-site-sidenav mat-elevation-z2"
+<mat-sidenav-container class="tb-rp-shell" [class.tb-rp-home-active]="isHomePage">
+  <mat-sidenav #sidenav class="tb-site-sidenav tb-rp-sidenav"
                [disableClose]="sidenavOpened"
                (click)="sidenavClicked()"
                [mode]="sidenavMode"
                [opened]="sidenavOpened && !forceFullscreen">
     <header class="tb-nav-header">
-      <mat-toolbar color="primary" class="tb-nav-header-toolbar">
+      <mat-toolbar class="tb-nav-header-toolbar">
         <div class="flex flex-auto">
           <img [src]="logo"
                aria-label="logo" class="tb-logo-title"/>
         </div>
       </mat-toolbar>
     </header>
-    <mat-toolbar color="primary" class="tb-side-menu-toolbar flex flex-1 flex-col" role="navigation">
+    <div class="tb-side-menu-toolbar" role="navigation">
       <tb-side-menu></tb-side-menu>
-    </mat-toolbar>
+      <div class="tb-sidenav-promo" aria-hidden="true">
+        <div class="tb-sidenav-promo-art">
+          <span class="tb-sidenav-promo-screen"></span>
+          <span class="tb-sidenav-promo-dot tb-sidenav-promo-dot-a"></span>
+          <span class="tb-sidenav-promo-dot tb-sidenav-promo-dot-b"></span>
+          <span class="tb-sidenav-promo-dot tb-sidenav-promo-dot-c"></span>
+        </div>
+        <p class="tb-sidenav-promo-text">{{ 'home.promo-text' | translate }}</p>
+      </div>
+    </div>
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="flex flex-col" role="main" style="height: 100%;">
-      <mat-toolbar color="primary" class="tb-primary-toolbar flex flex-row">
+      <div *ngIf="isHomePage" class="tb-rp-home-mobile-bar gt-sm:!hidden">
+        <button mat-icon-button type="button" (click)="sidenav.toggle()" aria-label="Menu">
+          <mat-icon class="material-icons">menu</mat-icon>
+        </button>
+      </div>
+      <mat-toolbar *ngIf="!isHomePage"
+                   color="primary" class="tb-primary-toolbar flex flex-row">
         <button mat-icon-button id="main"
                 [class.!hidden]="forceFullscreen || displaySearchMode()"
                 class="gt-sm:!hidden" (click)="sidenav.toggle()">
@@ -78,7 +93,7 @@
       <mat-progress-bar color="warn" style="z-index: 10; margin-bottom: -4px; width: 100%;" mode="indeterminate"
                         *ngIf="!hideLoadingBar && (isLoading$ | async)">
       </mat-progress-bar>
-      <div tb-toast class="tb-main-content flex flex-1 flex-col">
+      <div tb-toast class="tb-main-content flex flex-1 flex-col" [class.tb-rp-home-content]="isHomePage">
         <router-outlet (activate)="activeComponentChanged($event)"></router-outlet>
       </div>
     </div>

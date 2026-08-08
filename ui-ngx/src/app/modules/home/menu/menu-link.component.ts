@@ -14,8 +14,14 @@
 /// limitations under the License.
 ///
 
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { MenuSection } from '@core/services/menu.models';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MenuId, MenuSection } from '@core/services/menu.models';
+import { AlarmService } from '@core/http/alarm.service';
+import { AlarmQueryV2, AlarmSearchStatus } from '@shared/models/alarm.models';
+import { TimePageLink } from '@shared/models/page/page-link';
+import { Direction } from '@shared/models/page/sort-order';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'tb-menu-link',
@@ -23,14 +29,46 @@ import { MenuSection } from '@core/services/menu.models';
   styleUrls: ['./menu-link.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MenuLinkComponent implements OnInit {
+export class MenuLinkComponent implements OnInit, OnDestroy {
 
   @Input() section: MenuSection;
 
-  constructor() {
+  badgeCount = 0;
+
+  private destroy$ = new Subject<void>();
+
+  constructor(private alarmService: AlarmService,
+              private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
+    if (this.section?.id === MenuId.alarms) {
+      this.loadActiveAlarmsBadge();
+    }
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private loadActiveAlarmsBadge() {
+    const pageLink = new TimePageLink(1, 0, null, {property: 'createdTime', direction: Direction.DESC});
+    const query = new AlarmQueryV2(null, pageLink, {
+      statusList: [AlarmSearchStatus.ACTIVE]
+    });
+    this.alarmService.getAllAlarmsV2(query, {ignoreLoading: true, ignoreErrors: true})
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (alarms) => {
+          this.badgeCount = alarms?.totalElements || 0;
+          this.cd.markForCheck();
+        },
+        error: () => {
+          this.badgeCount = 0;
+          this.cd.markForCheck();
+        }
+      });
   }
 
 }

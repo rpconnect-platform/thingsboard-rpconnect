@@ -14,13 +14,15 @@
 /// limitations under the License.
 ///
 
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { RP_QUICK_ACCESS_ITEMS, RpQuickAccessItem } from './rp-home.models';
 
 @Component({
-  selector: 'tb-home-links',
-  templateUrl: './home-links.component.html',
-  styleUrls: ['./home-links.component.scss'],
+  selector: 'tb-rp-quick-access',
+  templateUrl: './rp-quick-access.component.html',
+  styleUrls: ['./rp-quick-access.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeLinksComponent {
+export class RpQuickAccessComponent {
+  @Input() items: RpQuickAccessItem[] = RP_QUICK_ACCESS_ITEMS;
 }

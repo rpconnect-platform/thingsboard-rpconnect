@@ -1,0 +1,157 @@
+/**
+ * Copyright © 2016-2024 The Thingsboard Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.rp-card {
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 14px;
+  background: #151c2f;
+  padding: 18px 20px 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rp-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.rp-card-title-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.rp-card-title-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    color: #fff;
+  }
+}
+
+.rp-card-title-icon--purple {
+  background: rgba(139, 92, 246, 0.95);
+}
+
+.rp-card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 650;
+  color: #f1f5f9;
+}
+
+.rp-card-link {
+  color: #60a5fa;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.rp-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rp-dash-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 8px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color .15s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.rp-dash-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(139, 92, 246, 0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+
+  mat-icon {
+    color: #a78bfa;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.rp-dash-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e2e8f0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rp-dash-lock {
+  font-size: 14px !important;
+  width: 14px !important;
+  height: 14px !important;
+  color: #fbbf24;
+}
+
+.rp-dash-time {
+  flex: 0 0 auto;
+  font-size: 12px;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.rp-empty-inline {
+  padding: 28px 8px;
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+}

@@ -14,13 +14,24 @@
 /// limitations under the License.
 ///
 
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from '@shared/shared.module';
+import { NotificationBellComponent } from '@home/components/notification/notification-bell.component';
+import { ShowNotificationPopoverComponent } from '@home/components/notification/show-notification-popover.component';
 
-@Component({
-  selector: 'tb-home-links',
-  templateUrl: './home-links.component.html',
-  styleUrls: ['./home-links.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+@NgModule({
+  declarations: [
+    NotificationBellComponent,
+    ShowNotificationPopoverComponent
+  ],
+  imports: [
+    CommonModule,
+    SharedModule
+  ],
+  exports: [
+    NotificationBellComponent
+  ]
 })
-export class HomeLinksComponent {
+export class NotificationModule {
 }

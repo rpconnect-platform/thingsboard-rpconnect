@@ -1,0 +1,145 @@
+/**
+ * Copyright © 2016-2024 The Thingsboard Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.rp-card {
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 14px;
+  background: #151c2f;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rp-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.rp-card-title-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rp-card-title-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    color: #fff;
+  }
+}
+
+.rp-card-title-icon--blue {
+  background: rgba(37, 99, 235, 0.95);
+}
+
+.rp-card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 650;
+  color: #f1f5f9;
+}
+
+.rp-qa-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  flex: 1 1 auto;
+}
+
+.rp-qa-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  transition: background-color .15s ease, border-color .15s ease;
+  min-height: 72px;
+  box-sizing: border-box;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.rp-qa-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+
+  mat-icon {
+    color: #fff;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.rp-qa-item--red .rp-qa-icon { background: rgba(239, 68, 68, 0.9); }
+.rp-qa-item--blue .rp-qa-icon { background: rgba(37, 99, 235, 0.95); }
+.rp-qa-item--green .rp-qa-icon { background: rgba(34, 197, 94, 0.9); }
+.rp-qa-item--purple .rp-qa-icon { background: rgba(139, 92, 246, 0.95); }
+
+.rp-qa-item--red { border-color: rgba(239, 68, 68, 0.18); }
+.rp-qa-item--blue { border-color: rgba(37, 99, 235, 0.18); }
+.rp-qa-item--green { border-color: rgba(34, 197, 94, 0.18); }
+.rp-qa-item--purple { border-color: rgba(139, 92, 246, 0.18); }
+
+.rp-qa-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.rp-qa-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.rp-qa-desc {
+  font-size: 12px;
+  color: #64748b;
+}
+
+@media (max-width: 599px) {
+  .rp-qa-grid {
+    grid-template-columns: 1fr;
+  }
+}

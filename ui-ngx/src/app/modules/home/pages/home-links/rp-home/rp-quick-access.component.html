@@ -1,0 +1,43 @@
+<!--
+
+    Copyright © 2016-2024 The Thingsboard Authors
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<section class="rp-card">
+  <header class="rp-card-header">
+    <div class="rp-card-title-wrap">
+      <span class="rp-card-title-icon rp-card-title-icon--blue" aria-hidden="true">
+        <mat-icon class="material-icons">bolt</mat-icon>
+      </span>
+      <h2 class="rp-card-title">{{ 'home.quick-access' | translate }}</h2>
+    </div>
+  </header>
+
+  <div class="rp-qa-grid">
+    <a class="rp-qa-item"
+       *ngFor="let item of items"
+       [routerLink]="item.route"
+       [queryParams]="item.queryParams || null"
+       [ngClass]="'rp-qa-item--' + item.color">
+      <span class="rp-qa-icon" aria-hidden="true">
+        <mat-icon class="material-icons">{{ item.icon }}</mat-icon>
+      </span>
+      <span class="rp-qa-text">
+        <span class="rp-qa-title">{{ item.titleKey | translate }}</span>
+        <span class="rp-qa-desc">{{ item.descKey | translate }}</span>
+      </span>
+    </a>
+  </div>
+</section>

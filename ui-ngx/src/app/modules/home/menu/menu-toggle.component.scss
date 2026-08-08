@@ -32,16 +32,33 @@
     position: relative;
     z-index: 1;
     overflow: hidden;
-
     transition: .45s cubic-bezier(.35, 0, .25, 1);
-
     transition-property: height;
+    margin-top: 2px;
 
     a.mat-mdc-button {
-      padding: 0 16px 0 32px;
+      padding: 0 14px 0 42px;
+      height: 40px;
+      line-height: 40px;
       font-weight: 500;
+      font-size: 13.5px;
       text-transform: none !important;
       text-rendering: optimizeLegibility;
+      color: rgba(255, 255, 255, 0.58);
+
+      .mat-icon,
+      tb-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        min-width: 18px;
+        min-height: 18px;
+      }
+
+      &.tb-active {
+        background-color: #2563eb;
+        color: #fff;
+      }
     }
   }
 }

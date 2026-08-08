@@ -17,7 +17,7 @@
 import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { skip, startWith, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { PageComponent } from '@shared/components/page.component';
@@ -32,8 +32,8 @@ import { instanceOfSearchableComponent, ISearchableComponent } from '@home/model
 import { ActiveComponentService } from '@core/services/active-component.service';
 import { RouterTabsComponent } from '@home/components/router-tabs.component';
 import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { isDefined, isDefinedAndNotNull } from '@core/utils';
+import { NavigationEnd, Router } from '@angular/router';
+import { isDefinedAndNotNull } from '@core/utils';
 
 @Component({
   selector: 'tb-home',
@@ -54,6 +54,8 @@ export class HomeComponent extends PageComponent implements AfterViewInit, OnIni
 
   logo = 'assets/logo_title_white.svg';
 
+  isHomePage = false;
+
   @ViewChild('sidenav')
   sidenav: MatSidenav;
 
@@ -73,6 +75,7 @@ export class HomeComponent extends PageComponent implements AfterViewInit, OnIni
               @Inject(WINDOW) private window: Window,
               private activeComponentService: ActiveComponentService,
               private fb: FormBuilder,
+              private router: Router,
               public breakpointObserver: BreakpointObserver) {
     super(store);
   }
@@ -82,6 +85,7 @@ export class HomeComponent extends PageComponent implements AfterViewInit, OnIni
     const isGtSm = this.breakpointObserver.isMatched(MediaBreakpoints['gt-sm']);
     this.sidenavMode = isGtSm ? 'side' : 'over';
     this.sidenavOpened = isGtSm;
+    this.updateHomePageFlag(this.router.url);
 
     this.breakpointObserver
       .observe(MediaBreakpoints['gt-sm'])
@@ -96,6 +100,17 @@ export class HomeComponent extends PageComponent implements AfterViewInit, OnIni
           }
         }
       );
+
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      map(event => event.urlAfterRedirects || event.url),
+      takeUntil(this.destroy$)
+    ).subscribe(url => this.updateHomePageFlag(url));
+  }
+
+  private updateHomePageFlag(url: string) {
+    const path = (url || '').split('?')[0];
+    this.isHomePage = path === '/home' || path.endsWith('/home');
   }
 
   ngOnDestroy() {

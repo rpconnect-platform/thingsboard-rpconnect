@@ -21,17 +21,28 @@ import { HomeLinksRoutingModule } from './home-links-routing.module';
 import { HomeLinksComponent } from './home-links.component';
 import { SharedModule } from '@app/shared/shared.module';
 import { HomeComponentsModule } from '@home/components/home-components.module';
+import { RpHomeComponent } from './rp-home/rp-home.component';
+import { RpKpiCardComponent } from './rp-home/rp-kpi-card.component';
+import { RpRecentDashboardsComponent } from './rp-home/rp-recent-dashboards.component';
+import { RpRecentAlarmsComponent } from './rp-home/rp-recent-alarms.component';
+import { RpQuickAccessComponent } from './rp-home/rp-quick-access.component';
+import { NotificationModule } from '@home/components/notification/notification.module';
 
 @NgModule({
-  declarations:
-    [
-      HomeLinksComponent
-    ],
+  declarations: [
+    HomeLinksComponent,
+    RpHomeComponent,
+    RpKpiCardComponent,
+    RpRecentDashboardsComponent,
+    RpRecentAlarmsComponent,
+    RpQuickAccessComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
     HomeComponentsModule,
-    HomeLinksRoutingModule
+    HomeLinksRoutingModule,
+    NotificationModule
   ]
 })
 export class HomeLinksModule { }

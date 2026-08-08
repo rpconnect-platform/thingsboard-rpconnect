@@ -15,4 +15,13 @@
     limitations under the License.
 
 -->
-<tb-rp-home></tb-rp-home>
+<article class="rp-kpi" [ngClass]="'rp-kpi--' + tone">
+  <div class="rp-kpi-icon" aria-hidden="true">
+    <mat-icon class="material-icons">{{ icon }}</mat-icon>
+  </div>
+  <div class="rp-kpi-body">
+    <div class="rp-kpi-title">{{ title }}</div>
+    <div class="rp-kpi-value">{{ value }}</div>
+    <div class="rp-kpi-detail" *ngIf="detail">{{ detail }}</div>
+  </div>
+</article>
